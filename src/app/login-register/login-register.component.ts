@@ -1,7 +1,9 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from  '@angular/material/dialog';
 import swal from 'sweetalert';
+import { ApiConnectionsService } from '../utils/api-connections.service';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
@@ -18,8 +20,20 @@ export class LoginRegisterComponent implements OnInit {
     password: new FormControl(''),
     
   });
+private formValue:any={
+  "mailId":"",
+  "password":""
+}
+private regformValue:any={
+      "userName":"",
+      "contactNumber":"",
+      "gender":"",
+      "password":"",
+      "mailId":"",
 
-  constructor(private formBuilder: FormBuilder,private  dialogRef : MatDialog) { }
+
+}
+  constructor(private formBuilder: FormBuilder,private  dialogRef : MatDialog,private apiConnection:ApiConnectionsService) { }
   
 
   ngOnInit(): void {
@@ -42,7 +56,7 @@ export class LoginRegisterComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6),
+            Validators.minLength(1),
             Validators.maxLength(40)
           ]
         ]
@@ -56,7 +70,18 @@ export class LoginRegisterComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.formValue.mailId=this.form.value.email
+    this.formValue.password=this.form.value.password
+    this.apiConnection.LoginPost(this.formValue).subscribe(data=>{
+      console.log(data)
+      },
+      error=>{
+console.log('API Not running')
+      }
+      )
+
   }
+  
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
@@ -78,7 +103,7 @@ export class LoginRegisterComponent implements OnInit {
     else if(this.formGroupReg.value.contactNumberReg.toString().length!=10){
       swal("Oops!", "Phone number length should be 10");
     }
-    else if(this.formGroupReg.value.genderReg!="Male"||this.formGroupReg.value.genderReg!="female"){
+    else if(!(this.formGroupReg.value.genderReg=="Male"||this.formGroupReg.value.genderReg=="Female")){
       swal("Oops!", "Please select gender from drop down");
     }
     else if(!this.formGroupReg.value.emailReg.includes("@")){
@@ -92,6 +117,23 @@ export class LoginRegisterComponent implements OnInit {
     }
     else{
       //Api connection
+      
+
+      this.regformValue.userName=this.formGroupReg.value.nameReg
+      this.regformValue.contactNumber=this.formGroupReg.value.contactNumberReg
+      this.regformValue.mailId=this.formGroupReg.value.emailReg
+      this.regformValue.password=this.formGroupReg.value.passwordReg
+      this.regformValue.gender=this.formGroupReg.value.genderReg
+
+      this.apiConnection.RegisterPost(this.regformValue).subscribe(data=>{
+        console.log(data)
+        },
+        error=>{
+  console.log('API Not running')
+        }
+        )
+
+
       swal( "Registration successful","Redirecting in few seconds", "success");
       setTimeout(()=>{                           
       window.location.reload();
