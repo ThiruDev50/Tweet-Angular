@@ -1,108 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from  '@angular/material/dialog';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { RegisterErrorPopupComponent } from '../Pop-Ups/register-error-popup/register-error-popup.component';
 import swal from 'sweetalert';
-
+import { ApiConnectionsService } from '../utils/api-connections.service';
+import * as _ from 'lodash';
+import { Observable, ReplaySubject } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  styleUrls: ['./test.component.scss'],
 })
+
 export class TestComponent implements OnInit {
+  imagePath: any;
+  constructor(private _sanitizer: DomSanitizer){}
   
-  formGroupReg!: FormGroup;
-  public loginBtn= true;
-  submitted = false;
-  form: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    
-  });
-
-  constructor(private formBuilder: FormBuilder,private  dialogRef : MatDialog) { }
-  
-
-  ngOnInit(): void {
-    const signUpButton = document.getElementById('signUp') as HTMLElement;
-    const signInButton = document.getElementById('signIn') as HTMLElement;
-    const container = document.getElementById('container') as HTMLElement;
-    
-    signUpButton.addEventListener('click', () => {
-      container.classList.add("right-panel-active");
-    });
-    
-    signInButton.addEventListener('click', () => {
-      container.classList.remove("right-panel-active");
-    });
-
-    this.form = this.formBuilder.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(40)
-          ]
-        ]
-      },
-      
-    );
-    this.initRegister()
-  }//onInit finish
-  loginProcess(): void {
-    this.submitted = true;
-    console.log(JSON.stringify(this.form.value));
-    if (this.form.invalid) {
+  ngOnInit(): void {}
+  sellersPermitFile: any;
+  //base64s
+  sellersPermitString: any;
+  //json
+  public picked(event: any, field: any) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      if (field == 1) {
+        this.sellersPermitFile = file;
+        this.handleInputChange(file); //turn into base64
+      }
+    } else {
+      alert('No file selected');
+    }
+  }
+  handleInputChange(files: any) {
+    var file = files;
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
       return;
     }
-    console.log(this.form.value, null, 2);
+    reader.onloadend = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
   }
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
+  _handleReaderLoaded(e: any) {
+    let reader = e.target;
+    var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
+    //this.imageSrc = base64result;
+    this.sellersPermitString = base64result;
+    console.log('1', this.sellersPermitString);
+    this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+                 + this.sellersPermitString);
   }
-  initRegister(){
-   this.formGroupReg=new FormGroup({
-    nameReg: new FormControl('',[Validators.required]),
-    contactNumberReg: new FormControl('',[Validators.required]),
-    genderReg: new FormControl('',[Validators.required]),
-    emailReg: new FormControl('',[Validators.required]),
-    passwordReg: new FormControl('',[Validators.required]),
-    confirmPasswordReg: new FormControl('',[Validators.required]),
-
-   })
-  }
-  registerProcess(){
-    console.log(this.formGroupReg.value) 
-    if(this.formGroupReg.value.nameReg.length==0){
-      swal("Oops!", "Name should not be empty");
-    }
-    else if(this.formGroupReg.value.contactNumberReg.toString().length!=10){
-      console.log(this.formGroupReg.value.contactNumberReg>999999999 &&this.formGroupReg.value.contactNumberReg<10000000000)
-      swal("Oops!", "Phone number length should be 10");
-    }
-    else if(this.formGroupReg.value.genderReg==""){
-      swal("Oops!", "Please select gender");
-    }
-    else if(!this.formGroupReg.value.emailReg.includes("@")){
-      swal("Oops!", "Enter valid mail Id");
-    }
-    else if(this.formGroupReg.value.passwordReg==""){
-      swal("Oops!", "Password cannot empty");
-    }
-    else if(this.formGroupReg.value.passwordReg!=this.formGroupReg.value.confirmPasswordReg){
-      swal("Oops!", "Password is not matching");
-    }
-    else{
-      //Api connection
-      swal( "Registration successful","Redirecting in few seconds", "success");
-      setTimeout(()=>{                           
-      window.location.reload();
-   }, 5000);
-    }
-  }
-
+  
 }
