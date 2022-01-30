@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -42,9 +42,9 @@ export class TestComponent implements OnInit {
     }
   }
   handleInputChange(files: any) {
-    var file = files;
-    var pattern = /image-*/;
-    var reader = new FileReader();
+    var file = files; */
+    //var pattern = /image-*/;
+  /*   var reader = new FileReader();
     if (!file.type.match(pattern)) {
       alert('invalid format');
       return;
@@ -64,3 +64,24 @@ export class TestComponent implements OnInit {
   }
   
 }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+/* <p>Input one</p>
+<input (change)="picked($event, 1)" type="file" />
+<br />
+<hr />
+<button class="butoncus_sig" id="dnext">Submit</button>
+<div class="img">
+  <img class="imgSrc" [src]="imagePath">
+</div> */

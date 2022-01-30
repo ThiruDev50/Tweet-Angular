@@ -2,8 +2,10 @@ import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from  '@angular/material/dialog';
+import { catchError } from 'rxjs';
 import swal from 'sweetalert';
 import { ApiConnectionsService } from '../utils/api-connections.service';
+import { CommonService } from '../utils/common.service';
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
@@ -30,10 +32,12 @@ private regformValue:any={
       "gender":"",
       "password":"",
       "mailId":"",
+      "profilePictureBase64":""
 
 
 }
-  constructor(private formBuilder: FormBuilder,private  dialogRef : MatDialog,private apiConnection:ApiConnectionsService) { }
+  constructor(private formBuilder: FormBuilder,private  dialogRef : MatDialog,
+    private apiConnection:ApiConnectionsService, private commonService:CommonService) { }
   
 
   ngOnInit(): void {
@@ -124,20 +128,29 @@ console.log('API Not running')
       this.regformValue.mailId=this.formGroupReg.value.emailReg
       this.regformValue.password=this.formGroupReg.value.passwordReg
       this.regformValue.gender=this.formGroupReg.value.genderReg
-
-      this.apiConnection.RegisterPost(this.regformValue).subscribe(data=>{
-        console.log(data)
-        },
-        error=>{
-  console.log('API Not running')
-        }
-        )
-
-
-      swal( "Registration successful","Redirecting in few seconds", "success");
-      setTimeout(()=>{                           
-      window.location.reload();
-   }, 3500);
+      if(this.regformValue.gender=="Male"){
+        this.regformValue.profilePictureBase64 =this.commonService.maleDefaultProfileBase64
+      }
+      else{
+        this.regformValue.profilePictureBase64=this.commonService.feMaleDefaultProfileBase64
+      }
+      try{
+        this.apiConnection.RegisterPost(this.regformValue).subscribe(data=>{
+          console.log(data)
+          swal( "Registration successful","Redirecting in few seconds", "success");
+          setTimeout(()=>{                           
+          window.location.reload();
+       }, 3500);
+          },
+          error=>{
+            swal("Failed to connect with DB","Probably API is not running","warning")
+          }
+          )
+      }
+      catch{
+        swal("Oops Something wrong!!Pleasse try again later")
+      }
+     
     }
   }
 
