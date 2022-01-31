@@ -24,7 +24,15 @@ export class TestComponent implements OnInit {
   imagePath: any;
   constructor(private _sanitizer: DomSanitizer){}
   
-  ngOnInit(): void {}
+  userName:any; 
+   formdata:any;
+   ngOnInit() { 
+      this.formdata = new FormGroup({ 
+         userName: new FormControl(localStorage.getItem("MailId"))
+      }); 
+   } 
+   onClickSubmit(data:any) {
+     this.userName = data.userName;}
   sellersPermitFile: any;
   //base64s
   sellersPermitString: any;

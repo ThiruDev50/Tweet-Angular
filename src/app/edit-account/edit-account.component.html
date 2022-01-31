@@ -1,0 +1,54 @@
+<app-nav-bar></app-nav-bar>
+<div>
+  
+  <form  [formGroup]="formdata" (ngSubmit)="editDetails(formdata.value)">
+    <div>
+      <span>
+        <label>User Id</label>&nbsp;&nbsp;
+        <input type="text" formControlName = "UserId" />
+      </span>
+    </div>
+    <div>
+      <span>
+        <label>User name</label>&nbsp;&nbsp;
+        <input type="text" formControlName = "UserName" />
+      </span>
+    </div>
+    <div>
+      <span>
+        <label>Mail Id</label>&nbsp;&nbsp;
+        <input type="text" formControlName = "MailId" />
+      </span>
+    </div>
+    <div>
+        <span>
+          <label>Contact Number</label>&nbsp;&nbsp;
+          <input type="text" formControlName = "ContactNumber" />
+        </span>
+      </div>
+      <div>
+      <span>
+        <label>Gender</label>&nbsp;&nbsp;
+        <input type="text" formControlName = "Gender" />
+      </span>
+    </div><div>
+      <span>
+        <label>Password</label>&nbsp;&nbsp;
+        <input type="password" formControlName = "Password" />
+      </span>
+    </div>
+    <div>
+      <span>
+        <label>Profile Picture</label>&nbsp;&nbsp;
+       
+      <input (change)="picked($event, 1)" type="file"/>
+
+      </span>
+      
+    </div>
+    <div class="img">
+      <img class="imgSrc" [src]="imagePath">
+    </div>
+    <button type="submit" value = "Submit">Okkk</button>
+  </form>
+</div>

@@ -1,8 +1,10 @@
-<p>Input one</p>
-<input (change)="picked($event, 1)" type="file" />
-<br />
-<hr />
-<button class="butoncus_sig" id="dnext">Submit</button>
-<div class="img">
-  <img class="imgSrc" [src]="imagePath">
-</div>
+<div> 
+  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)" > 
+     <input type= "text"  name="userName" placeholder="userName" 
+        formControlName = "userName"> 
+     <br/>
+     <br/>
+     <input type="submit"  value="Click here"> 
+  </form>
+</div> 
+<p> Textbox result is: {{userName}} </p>

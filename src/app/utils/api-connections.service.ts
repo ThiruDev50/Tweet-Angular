@@ -13,6 +13,7 @@ export class ApiConnectionsService implements OnInit {
     public testUrl="https://jsonplaceholder.typicode.com/todos/"
     public localTest="https://localhost:44333/api/Register/GetUsers"
     public localPost="https://localhost:44333/api/Login"
+    public editUrl="/Register"
     public login={
       "mailId":"test@gmail.com",
       "password":"test"
@@ -28,5 +29,8 @@ export class ApiConnectionsService implements OnInit {
   }
   RegisterPost(registerBody:any){
     return this.http.post(this.baseUrl+this.registerUrl,registerBody)
+  }
+  EditDetailsPut(updateBody:any){
+    return this.http.put(this.baseUrl+this.editUrl,updateBody)
   }
 }

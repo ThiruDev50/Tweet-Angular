@@ -14,6 +14,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterErrorPopupComponent } from './Pop-Ups/register-error-popup/register-error-popup.component';
 import {HttpClientModule} from '@angular/common/http'
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+import { NewTweetComponent } from './new-tweet/new-tweet.component';
+import { MyTweetsComponent } from './my-tweets/my-tweets.component';
+import { AllTweetsComponent } from './all-tweets/all-tweets.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +27,12 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     NavBarComponent,
     LoginRegisterComponent,
     ForgotPasswordComponent,
-    RegisterErrorPopupComponent
+    RegisterErrorPopupComponent,
+    NewTweetComponent,
+    MyTweetsComponent,
+    AllTweetsComponent,
+    AllUsersComponent,
+    EditAccountComponent
   ],
   imports: [
     BrowserModule,

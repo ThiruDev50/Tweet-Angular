@@ -2,24 +2,24 @@
     <div id="menu-nav">
       <div id="navigation-bar">
         <ul>
-          <li>
+          <li routerLink="/newTweet" [ngClass]="isNewTweet ? 'navBg' : ''">
             <a><span>New tweet</span></a>
           </li>
-          <li>
+          <li routerLink="/myTweets" [ngClass]="isMyTweets ? 'navBg' : ''">
             <a><span>My Tweets</span></a>
           </li>
-          <li>
+          <li routerLink="/allTweets" [ngClass]="isAllTweets ? 'navBg' : ''">
             <a><span>All Tweets</span></a>
           </li>
-          <li>
+          <li routerLink="/allUsers" [ngClass]="isAllUsers ? 'navBg' : ''">
             <a><span>All Users</span></a>
           </li>
-          <li>
+          <li routerLink="/editAccount" [ngClass]="iseditAccount ? 'navBg' : ''">
             <a><span>Edit account</span></a>
           </li>
   
           <li class="logoutBtn">
-            <button type="button" class="btn btn-danger">Logout</button>
+            <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
           </li>
         </ul>
       </div>
