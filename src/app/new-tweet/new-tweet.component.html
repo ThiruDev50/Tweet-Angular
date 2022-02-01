@@ -1,1 +1,9 @@
 <app-nav-bar></app-nav-bar>
+<h1>Tweet Something</h1>
+<div>
+  <form [formGroup]="formdata" (ngSubmit)="editDetails(formdata.value)">
+<input type="text" formControlName="TweetContent" />
+<button type="submit" value="Submit">Post Tweet</button>
+
+  </form>
+</div>

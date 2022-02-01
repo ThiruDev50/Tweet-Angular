@@ -113,12 +113,7 @@ export class LoginRegisterComponent implements OnInit {
         );
       }
     );
-    this.apiConnection.GetAllUsers().subscribe(data=>{
-      this.ok=data
-      console.log(this.ok)
-      localStorage.setItem('AllUsers', JSON.stringify(data));
-      console.log(localStorage.getItem("AllUsers"))
-      })
+    
   }
 
   get f(): { [key: string]: AbstractControl } {
