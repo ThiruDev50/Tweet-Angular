@@ -26,10 +26,7 @@ export class TestComponent implements OnInit {
   
  
   constructor(private apiService:ApiConnectionsService,private commonSer :CommonService){
-    this.apiService.GetAllUsers().subscribe(data=>{
-      this.apiData=data
-      
-      })
+    
   }
   apiData:any={}
   ngOnInit(): void {

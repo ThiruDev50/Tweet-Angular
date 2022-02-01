@@ -17,6 +17,7 @@ export class ApiConnectionsService implements OnInit {
     public editUrl="/Register"
     public registerUrl="/Register"
     public getAllUsersUrl="/Register/GetAllUsers"
+    public newTweetPost="/Tweet/NewTweet"
   ngOnInit(): void {
   }
   getData(){
@@ -31,7 +32,11 @@ export class ApiConnectionsService implements OnInit {
   EditDetailsPut(updateBody:any){
     return this.http.put(this.baseUrl+this.editUrl,updateBody)
   }
-  GetAllUsers():Observable<Object>{
+  /* GetAllUsers():Observable<Object>{
     return this.http.get(this.baseUrl+this.getAllUsersUrl)
+  } */
+  NewTweetPost(tweetBody:any){
+    return this.http.post(this.baseUrl+this.newTweetPost,tweetBody)
+
   }
 }
