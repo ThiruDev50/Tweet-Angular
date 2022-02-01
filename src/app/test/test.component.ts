@@ -13,6 +13,8 @@ import { ApiConnectionsService } from '../utils/api-connections.service';
 import * as _ from 'lodash';
 import { Observable, ReplaySubject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LoginRegisterComponent } from '../login-register/login-register.component';
+import { CommonService } from '../utils/common.service';
 
 @Component({
   selector: 'app-test',
@@ -21,54 +23,27 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class TestComponent implements OnInit {
-  imagePath: any;
-  constructor(private _sanitizer: DomSanitizer){}
   
-  userName:any; 
-   formdata:any;
-   ngOnInit() { 
-      this.formdata = new FormGroup({ 
-         userName: new FormControl(localStorage.getItem("MailId"))
-      }); 
-   } 
-   onClickSubmit(data:any) {
-     this.userName = data.userName;}
-  sellersPermitFile: any;
-  //base64s
-  sellersPermitString: any;
-  //json
-  public picked(event: any, field: any) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      const file: File = fileList[0];
-      if (field == 1) {
-        this.sellersPermitFile = file;
-        this.handleInputChange(file); //turn into base64
-      }
-    } else {
-      alert('No file selected');
-    }
+ 
+  constructor(private apiService:ApiConnectionsService,private commonSer :CommonService){
+    this.apiService.GetAllUsers().subscribe(data=>{
+      this.apiData=data
+      
+      })
   }
-  handleInputChange(files: any) {
-    var file = files;
-    var pattern = /image-*/;
-    var reader = new FileReader();
-    if (!file.type.match(pattern)) {
-      alert('invalid format');
-      return;
-    }
-    reader.onloadend = this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
-  }
-  _handleReaderLoaded(e: any) {
-    let reader = e.target;
-    var base64result = reader.result.substr(reader.result.indexOf(',') + 1);
-    //this.imageSrc = base64result;
-    this.sellersPermitString = base64result;
-    console.log('1', this.sellersPermitString);
+  apiData:any={}
+  ngOnInit(): void {
+    fetch('https://localhost:44333/api/Register/GetAllUsers')
+    .then(result => result.json())
+    .then(rowData => this.rowData = rowData);
     
-    this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-                 + this.sellersPermitString);
   }
-  
+  columnDefs = [
+    {headerName: 'UserId', field: 'UserId'},
+    {headerName: 'UserName', field: 'UserName'},
+    {headerName: 'MailId', field: 'MailId'},
+    {headerName: 'Gender', field: 'Gender'},
+];
+rowData =[]
+
 }

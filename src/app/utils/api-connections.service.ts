@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,8 @@ export class ApiConnectionsService implements OnInit {
     public localTest="https://localhost:44333/api/Register/GetUsers"
     public localPost="https://localhost:44333/api/Login"
     public editUrl="/Register"
-    public login={
-      "mailId":"test@gmail.com",
-      "password":"test"
-    }
     public registerUrl="/Register"
+    public getAllUsersUrl="/Register/GetAllUsers"
   ngOnInit(): void {
   }
   getData(){
@@ -32,5 +30,8 @@ export class ApiConnectionsService implements OnInit {
   }
   EditDetailsPut(updateBody:any){
     return this.http.put(this.baseUrl+this.editUrl,updateBody)
+  }
+  GetAllUsers():Observable<Object>{
+    return this.http.get(this.baseUrl+this.getAllUsersUrl)
   }
 }

@@ -19,6 +19,7 @@ import { MyTweetsComponent } from './my-tweets/my-tweets.component';
 import { AllTweetsComponent } from './all-tweets/all-tweets.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { EditAccountComponent } from './edit-account/edit-account.component';
     MatDialogModule,
     HttpClientModule,
     AlifeFileToBase64Module,
+    AgGridModule.withComponents(null),
     
   ],
   providers: [],
