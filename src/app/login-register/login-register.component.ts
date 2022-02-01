@@ -19,6 +19,7 @@ import { CommonService } from '../utils/common.service';
   styleUrls: ['./login-register.component.css'],
 })
 export class LoginRegisterComponent implements OnInit {
+  ok:any
   formGroupReg!: FormGroup;
   public loginBtn = true;
   submitted = false;
@@ -112,6 +113,12 @@ export class LoginRegisterComponent implements OnInit {
         );
       }
     );
+    this.apiConnection.GetAllUsers().subscribe(data=>{
+      this.ok=data
+      console.log(this.ok)
+      localStorage.setItem('AllUsers', JSON.stringify(data));
+      console.log(localStorage.getItem("AllUsers"))
+      })
   }
 
   get f(): { [key: string]: AbstractControl } {

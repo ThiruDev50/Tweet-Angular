@@ -1,10 +1,7 @@
-<div> 
-  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)" > 
-     <input type= "text"  name="userName" placeholder="userName" 
-        formControlName = "userName"> 
-     <br/>
-     <br/>
-     <input type="submit"  value="Click here"> 
-  </form>
-</div> 
-<p> Textbox result is: {{userName}} </p>
+
+<ag-grid-angular 
+    style="width: 700px; height: 500px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs">
+</ag-grid-angular>
