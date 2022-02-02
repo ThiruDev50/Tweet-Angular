@@ -25,6 +25,7 @@ export class ApiConnectionsService implements OnInit {
   public editMyTweetUrl = '/Tweet/EditMyTweet';
   public editMyCommentUrl = '/Tweet/EditMyComment';
 public deleteMyPostUrl="/Tweet/DeleteMyTweet"
+public tokenUrl="/Login/GetToken"
   ngOnInit(): void {}
   getData() {
     return this.http.get(this.localTest);
@@ -67,6 +68,8 @@ public deleteMyPostUrl="/Tweet/DeleteMyTweet"
   }
   DeleteMyTweet(deleteBody:any){
     return this.http.delete(this.baseUrl + this.deleteMyPostUrl,deleteBody);
-
+  }
+  ForToken(tokenBody:any){
+    return this.http.post(this.baseUrl + this.tokenUrl,tokenBody);
   }
 }

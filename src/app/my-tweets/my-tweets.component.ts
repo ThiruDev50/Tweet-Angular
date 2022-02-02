@@ -23,8 +23,7 @@ myTweets:any;
    }); 
 try{
   this.apiConnection.GetMyTweets(this.formdata.value).subscribe(data=>{
-    console.log("User id",this.formdata.value)
-    console.log("My tweets",data)
+  
     this.myTweets=data
   },
       (error) => {

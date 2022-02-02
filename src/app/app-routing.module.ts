@@ -11,6 +11,7 @@ import { MyTweetsComponent } from './my-tweets/my-tweets.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewTweetComponent } from './new-tweet/new-tweet.component';
 import { TestComponent } from './test/test.component';
+import { AuthGuardService } from './utils/auth-guard.service';
 
 const routes: Routes = [
 {path:'test', component:TestComponent},
@@ -19,11 +20,11 @@ const routes: Routes = [
 {path:'',component:LandingPageComponent},
 {path:'Login',component:LoginRegisterComponent},
 {path:'forgotPassword',component:ForgotPasswordComponent},
-{path:'newTweet',component:NewTweetComponent},
-{path:'myTweets',component:MyTweetsComponent},
-{path:'allTweets',component:AllTweetsComponent},
-{path:'allUsers',component:AllUsersComponent},
-{path:'editAccount',component:EditAccountComponent},
+{path:'newTweet',component:NewTweetComponent,canActivate:[AuthGuardService]},
+{path:'myTweets',component:MyTweetsComponent,canActivate:[AuthGuardService]},
+{path:'allTweets',component:AllTweetsComponent,canActivate:[AuthGuardService]},
+{path:'allUsers',component:AllUsersComponent,canActivate:[AuthGuardService]},
+{path:'editAccount',component:EditAccountComponent,canActivate:[AuthGuardService]},
 ];
 
 @NgModule({
