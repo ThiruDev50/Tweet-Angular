@@ -23,6 +23,7 @@ export class LoginRegisterComponent implements OnInit {
   isLoading:boolean=true
   isNotLoading:boolean=false
   ok:any
+  token:any=""
   formGroupReg!: FormGroup;
   public loginBtn = true;
   submitted = false;
@@ -85,15 +86,17 @@ export class LoginRegisterComponent implements OnInit {
     }
     this.formValue.mailId = this.form.value.email;
     this.formValue.password = this.form.value.password;
-    this.spinner.show();
     this.apiConnection.LoginPost(this.formValue).subscribe(
       (data) => {
         if (data == 'UnAuthorized') {
           swal('Oops! Wrong credentials', 'Try again', 'warning');
         } else {
           this.userDetails = data;
-
+          console.log(this.userDetails )
+         // console.log("seri",this.userDetails.results["MailId"])
           localStorage.setItem('MailId', this.userDetails[0].MailId);
+         // console.log("seri",this.userDetails[0].MailId)
+
           localStorage.setItem(
             'ContactNumber',
             this.userDetails[0].ContactNumber
@@ -107,7 +110,20 @@ export class LoginRegisterComponent implements OnInit {
           localStorage.setItem('UserId', this.userDetails[0].UserId);
           localStorage.setItem('UserName', this.userDetails[0].UserName);
         //  console.log('kkkk', localStorage.getItem('MailId'));
-          this.router.navigate(['newTweet']);
+          //For Token
+        this.apiConnection.ForToken(this.formValue).subscribe(
+          data=>{
+            this.token=data
+          },error=>{
+            swal(
+              'Failed to connect with DB',
+              'Probably API is not running',
+              'warning'
+            );
+          }
+        )
+        localStorage.setItem("token",this.token)
+        this.router.navigate(['newTweet']);
         }
       },
       (error) => {
@@ -118,7 +134,7 @@ export class LoginRegisterComponent implements OnInit {
         );
       }
     );
-    this.spinner.hide();
+  
     
   }
 

@@ -24,6 +24,10 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { NgxSpinnerModule } from "ngx-spinner";
 import { DemoComponent } from './demo/demo.component';
 import { TweetComponentComponent } from './tweet-component/tweet-component.component';
+
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,11 +56,13 @@ import { TweetComponentComponent } from './tweet-component/tweet-component.compo
     HttpClientModule,
     AlifeFileToBase64Module,
     NgxSpinnerModule,
+    JwtModule,
     AgGridModule.withComponents(null),
     
   ],
   exports:[NgxSpinnerModule],
-  providers: [],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
