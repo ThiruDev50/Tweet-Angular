@@ -1,0 +1,22 @@
+.outer{
+    width: 950px;
+    height: 250px;
+    border-left: 10%;
+    border-right: 10%;
+    border-radius: 20px;
+
+}
+.imgSrc{
+    width: 100px;
+    height: 100px;
+  }
+  .TweetContent{
+    margin-left: 300px;
+  }
+  .showingComment{
+
+  }
+  .comments{
+    margin-left: 400px;
+
+  }

@@ -1,0 +1,61 @@
+<div class="outer">
+  <div >
+    <span>
+      <img class="imgSrc" [src]="imagePath" />
+      <span class="ForName">{{ UserName }}</span> &nbsp;&nbsp;&nbsp;
+      <span class="ForName">{{ tweetCreatedTime }}</span
+      >&nbsp;&nbsp;&nbsp;
+      <span class="ForName">{{ tweetCreatedDMY }}</span>
+      <span>
+        <button *ngIf="isSameUser" (click)="editMyPost()">Edit tweet</button>
+      </span>
+      <span>
+        <!-- <button *ngIf="isSameUser" (click)="deleteMyPost()">Delete tweet</button> -->
+      </span>
+    </span>
+    <div class="TweetContent" *ngIf="!isMyPostEdit">
+      {{ tweetContent }}
+    </div>
+  </div>
+  <div class="TweetContent" *ngIf="isMyPostEdit">
+    <form
+    [formGroup]="formEditPost"
+    (ngSubmit)="editPost(formEditPost.value)"
+  >
+    <input type="text" formControlName="tweetContent" />
+    <button type="submit" value="Submit">Comment</button>
+    <button (click)="CancelEditMyPost()">Cancel</button>
+  </form>
+  </div>
+
+  <div class="showingComment" *ngIf="showComment">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+      <img class="imgSrc" [src]="commentorimagePath" />
+      <span> Commented by:{{ commentorUserName }}</span
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="comments" *ngIf="!isMyCommentEdit">Comments : {{ commentorContent }}</span>
+      <div class="comments" *ngIf="isMyCommentEdit">
+        <form
+        [formGroup]="formEditComment"
+        (ngSubmit)="editComment(formEditComment.value)"
+      >
+        <input type="text" formControlName="commentorContent" />
+        <button type="submit" value="Submit">Save</button>
+        <button (click)="CancelEditMyComment()">Cancel</button>
+      </form>
+      </div>
+      <span>
+        <button *ngIf="isSameCommentUser" (click)="editMyComment()">Edit Comment</button>
+      </span>
+    </span>
+  </div>
+  <div *ngIf="!showComment">
+    <form
+      [formGroup]="formNewComment"
+      (ngSubmit)="addComment(formNewComment.value)"
+    >
+      <input type="text" formControlName="commentorContent" />
+      <button type="submit" value="Submit">Comment</button>
+    </form>
+  </div>
+</div>

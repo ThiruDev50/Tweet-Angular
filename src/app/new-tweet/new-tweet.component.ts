@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import swal from 'sweetalert';
 import { ApiConnectionsService } from '../utils/api-connections.service';
 
 @Component({
@@ -44,17 +45,25 @@ export class NewTweetComponent implements OnInit {
       TweetCreatedTime:new FormControl(this.tweetCreatedPeriodString),
       TweetCreatedDMY:new FormControl(this.tweetCreatedDMY)
     });
-    console.log('day', this.cDay);
-    console.log('month', this.cMonth);
-    console.log('Year', this.cYear);
-    console.log('Hour', this.cHour);
-    console.log('Min', this.cMin);
+    
   }
   editDetails(dataBody: any) {
     //this.formdata.patchValue({"ProfilePictureBase64":"probil;e bahi"})
     this.apiConnection.NewTweetPost(this.formdata.value).subscribe((data) => {
-      console.log(this.formdata)
-      console.log(data);
+      swal(
+        'New Tweet added ',
+        'Redirecting in few seconds',
+        'success'
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 3500);
+    },error=>{
+      swal(
+        'Failed to connect with DB',
+        'Probably API is not running',
+        'warning'
+      );
     });
   }
 }

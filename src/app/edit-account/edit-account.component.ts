@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ApiConnectionsService } from '../utils/api-connections.service';
 import swal from 'sweetalert';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-account',
@@ -12,7 +13,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class EditAccountComponent implements OnInit {
   imagePath: any;
   formdata:any;
-
+  isLoading:boolean=false
+  isNotLoading:boolean=true
 public userDetails:any={
   "MailId":"",
   'ContactNumber':"",
@@ -23,7 +25,8 @@ public userDetails:any={
   "UserName":""
 }
 public ProfilePictureBase64:any
-    constructor(private _sanitizer: DomSanitizer,private apiConnection: ApiConnectionsService) { 
+    
+    constructor(private _sanitizer: DomSanitizer,private apiConnection: ApiConnectionsService,private router: Router) { 
       this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
                  + localStorage.getItem("ProfilePictureBase64"));
   }
@@ -85,7 +88,7 @@ public ProfilePictureBase64:any
   editDetails(data:any){
     try {
   this.formdata.patchValue({"ProfilePictureBase64":this.sellersPermitString})
-  console.log(this.formdata)
+ // console.log(this.formdata)
       this.apiConnection.EditDetailsPut(this.formdata.value).subscribe(
         (data) => {
           swal(
@@ -93,6 +96,9 @@ public ProfilePictureBase64:any
             'Redirecting in few seconds',
             'success'
           );
+          setTimeout(() => {
+            this.router.navigate(['newTweet']);
+          }, 3500);
           
         },
         (error) => {

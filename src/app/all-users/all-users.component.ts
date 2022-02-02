@@ -7,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-users.component.css']
 })
 export class AllUsersComponent implements OnInit {
-
+isLoading:boolean=true
+isNotLoading:boolean=false
   constructor(){
    
   }
   apiData:any={}
   ngOnInit(): void {
+    this.isLoading=true
     fetch('https://localhost:44333/api/Register/GetAllUsers')
     .then(result => result.json())
     .then(rowData => this.rowData = rowData);
+    this.isLoading=false
     
   }
   columnDefs = [

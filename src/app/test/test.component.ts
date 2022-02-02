@@ -15,6 +15,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoginRegisterComponent } from '../login-register/login-register.component';
 import { CommonService } from '../utils/common.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-test',
@@ -25,22 +26,10 @@ import { CommonService } from '../utils/common.service';
 export class TestComponent implements OnInit {
   
  
-  constructor(private apiService:ApiConnectionsService,private commonSer :CommonService){
+  constructor(private spinner: NgxSpinnerService){
     
   }
-  apiData:any={}
-  ngOnInit(): void {
-    fetch('https://localhost:44333/api/Register/GetAllUsers')
-    .then(result => result.json())
-    .then(rowData => this.rowData = rowData);
-    
+  ngOnInit() {
   }
-  columnDefs = [
-    {headerName: 'UserId', field: 'UserId'},
-    {headerName: 'UserName', field: 'UserName'},
-    {headerName: 'MailId', field: 'MailId'},
-    {headerName: 'Gender', field: 'Gender'},
-];
-rowData =[]
 
 }
