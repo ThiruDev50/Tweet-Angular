@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError } from 'rxjs';
 import swal from 'sweetalert';
 import { ApiConnectionsService } from '../utils/api-connections.service';
@@ -19,6 +20,8 @@ import { CommonService } from '../utils/common.service';
   styleUrls: ['./login-register.component.css'],
 })
 export class LoginRegisterComponent implements OnInit {
+  isLoading:boolean=true
+  isNotLoading:boolean=false
   ok:any
   formGroupReg!: FormGroup;
   public loginBtn = true;
@@ -45,7 +48,8 @@ export class LoginRegisterComponent implements OnInit {
     private dialogRef: MatDialog,
     private apiConnection: ApiConnectionsService,
     private commonService: CommonService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -81,6 +85,7 @@ export class LoginRegisterComponent implements OnInit {
     }
     this.formValue.mailId = this.form.value.email;
     this.formValue.password = this.form.value.password;
+    this.spinner.show();
     this.apiConnection.LoginPost(this.formValue).subscribe(
       (data) => {
         if (data == 'UnAuthorized') {
@@ -101,7 +106,7 @@ export class LoginRegisterComponent implements OnInit {
           );
           localStorage.setItem('UserId', this.userDetails[0].UserId);
           localStorage.setItem('UserName', this.userDetails[0].UserName);
-          console.log('kkkk', localStorage.getItem('MailId'));
+        //  console.log('kkkk', localStorage.getItem('MailId'));
           this.router.navigate(['newTweet']);
         }
       },
@@ -113,6 +118,7 @@ export class LoginRegisterComponent implements OnInit {
         );
       }
     );
+    this.spinner.hide();
     
   }
 
@@ -171,7 +177,7 @@ export class LoginRegisterComponent implements OnInit {
       try {
         this.apiConnection.RegisterPost(this.regformValue).subscribe(
           (data) => {
-            console.log(data);
+          //  console.log(data);
             swal(
               'Registration successful',
               'Redirecting in few seconds',

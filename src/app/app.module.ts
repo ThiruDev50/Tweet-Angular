@@ -20,6 +20,10 @@ import { AllTweetsComponent } from './all-tweets/all-tweets.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { DemoComponent } from './demo/demo.component';
+import { TweetComponentComponent } from './tweet-component/tweet-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,10 @@ import { AgGridModule } from 'ag-grid-angular';
     MyTweetsComponent,
     AllTweetsComponent,
     AllUsersComponent,
-    EditAccountComponent
+    EditAccountComponent,
+    LoadingScreenComponent,
+    DemoComponent,
+    TweetComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +51,11 @@ import { AgGridModule } from 'ag-grid-angular';
     MatDialogModule,
     HttpClientModule,
     AlifeFileToBase64Module,
+    NgxSpinnerModule,
     AgGridModule.withComponents(null),
     
   ],
+  exports:[NgxSpinnerModule],
   providers: [],
   bootstrap: [AppComponent]
 })

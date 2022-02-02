@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllTweetsComponent } from './all-tweets/all-tweets.component';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { DemoComponent } from './demo/demo.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -13,6 +14,8 @@ import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
 {path:'test', component:TestComponent},
+{path:'demo', component:DemoComponent},
+
 {path:'',component:LandingPageComponent},
 {path:'Login',component:LoginRegisterComponent},
 {path:'forgotPassword',component:ForgotPasswordComponent},
@@ -21,7 +24,6 @@ const routes: Routes = [
 {path:'allTweets',component:AllTweetsComponent},
 {path:'allUsers',component:AllUsersComponent},
 {path:'editAccount',component:EditAccountComponent},
-
 ];
 
 @NgModule({

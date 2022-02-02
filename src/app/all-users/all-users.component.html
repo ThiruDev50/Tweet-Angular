@@ -1,8 +1,12 @@
 <app-nav-bar></app-nav-bar>
-
-<ag-grid-angular 
+<div *ngIf="isLoading">
+    <app-loading-screen ></app-loading-screen>
+</div>
+<div>
+    <ag-grid-angular *ngIf="!isNotLoading"
     style="width: 700px; height: 500px;" 
     class="ag-theme-balham"
     [rowData]="rowData" 
     [columnDefs]="columnDefs">
 </ag-grid-angular>
+</div>
