@@ -1,12 +1,8 @@
 <app-nav-bar></app-nav-bar>
-<div *ngIf="isLoading">
-    <app-loading-screen ></app-loading-screen>
-</div>
-<div>
-    <ag-grid-angular *ngIf="!isNotLoading"
-    style="width: 700px; height: 500px;" 
-    class="ag-theme-balham"
-    [rowData]="rowData" 
-    [columnDefs]="columnDefs">
-</ag-grid-angular>
-</div>
+<div class="outer">
+    &zwnj; 
+    <div *ngFor="let user of allUsers"  >
+        <app-users-list [user]="user"></app-users-list>
+        <h1></h1>
+    </div>
+    </div>

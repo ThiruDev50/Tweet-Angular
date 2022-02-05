@@ -24,9 +24,11 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { NgxSpinnerModule } from "ngx-spinner";
 import { DemoComponent } from './demo/demo.component';
 import { TweetComponentComponent } from './tweet-component/tweet-component.component';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import { NgMaterialModule } from './ng-material/ng-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
     EditAccountComponent,
     LoadingScreenComponent,
     DemoComponent,
-    TweetComponentComponent
+    TweetComponentComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +61,12 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
     NgxSpinnerModule,
     JwtModule,
     AgGridModule.withComponents(null),
+    MatGridListModule,
+    BrowserAnimationsModule,
+    NgMaterialModule,
     
   ],
-  exports:[NgxSpinnerModule],
+    exports:[NgxSpinnerModule],
   providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService],
   bootstrap: [AppComponent]
