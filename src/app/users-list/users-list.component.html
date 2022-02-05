@@ -1,0 +1,16 @@
+<div class="card">
+    <mat-card class="matCard" (click)="doStuff()">
+      <mat-card-content *ngIf="!isClicked" >
+      <span class="ForProfilePhoto"> <img class="imgSrc" [src]="imagePath" />  </span>
+         <span class=" w3-panel w3-card w3-light-blue ForName"><span class="mailContent"> User Name: {{user.UserName}}</span> </span>
+         <span class="w3-panel w3-card w3-yellow ForMailId"><span class="mailContent"> Mail Id: {{user.MailId}}</span></span> 
+         <span class=" w3-panel w3-card w3-amber ForGender"><span class="mailContent"> Gender : {{user.Gender}}</span> </span>
+         <span class=" w3-panel w3-card w3-lime ForUserId"><span class="mailContent"> Unique User Id : {{user.UserId}}</span></span>
+      </mat-card-content>
+      <mat-card-content *ngIf="isClicked" >
+        <span class=" ForNamed ">{{user.UserName}}'s Bio</span> 
+        <h1>{{user.UserBio}}</h1>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

@@ -53,8 +53,8 @@
 /* Centered text */
 .centered {
   position: absolute;
-  top: 30%;
-  left: 50%;
+  top: 40%;
+  left: 49%;
   transform: translate(-50%, -50%);
   color: brown;
  font-size: 200 px;
@@ -62,4 +62,12 @@
 
 .btn{
     color: #ffffff;   
+}
+.content{
+  font-family: 'Dancing Script', cursive;
+  font-size: 65px;
+ 
+}
+.ForBtn{
+  
 }

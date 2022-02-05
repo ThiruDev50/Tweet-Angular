@@ -43,6 +43,7 @@ export class LoginRegisterComponent implements OnInit {
     password: '',
     mailId: '',
     profilePictureBase64: '',
+    userBio:""
   };
   constructor(
     private formBuilder: FormBuilder,
@@ -109,6 +110,8 @@ export class LoginRegisterComponent implements OnInit {
           );
           localStorage.setItem('UserId', this.userDetails[0].UserId);
           localStorage.setItem('UserName', this.userDetails[0].UserName);
+          localStorage.setItem('UserBio', this.userDetails[0].UserBio);
+
         //  console.log('kkkk', localStorage.getItem('MailId'));
           //For Token
         this.apiConnection.ForToken(this.formValue).subscribe(
@@ -183,6 +186,7 @@ export class LoginRegisterComponent implements OnInit {
       this.regformValue.mailId = this.formGroupReg.value.emailReg;
       this.regformValue.password = this.formGroupReg.value.passwordReg;
       this.regformValue.gender = this.formGroupReg.value.genderReg;
+      this.regformValue.userBio="Bio is empty"
       if (this.regformValue.gender == 'Male') {
         this.regformValue.profilePictureBase64 =
           this.commonService.maleDefaultProfileBase64;

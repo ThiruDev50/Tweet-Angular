@@ -6,7 +6,7 @@
   }
   #menu-nav {
     max-width: 2000px;
-    background-color: #ecf0f1;
+    background-color: #84dcf1;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
@@ -25,7 +25,7 @@
     left: 0;
   }
   #navigation-bar a {
-    color: #848484;
+    color: red;
     font-size: 20px;
     text-decoration: none;
     text-align: center;
@@ -65,6 +65,7 @@
     display: flex;
   }
   .navBg{
-    background-color: aqua;
-    border-radius: 30px;
+    background-color: rgb(250, 221, 57);
+   border-radius: 20px;
+    
   }

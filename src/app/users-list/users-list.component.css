@@ -1,0 +1,69 @@
+.card{
+    width: 90%;
+    margin-left: 5%;
+    background-color: gold;
+border: none;
+  }
+  .matCard{
+      background-color: rgb(235, 231, 231);
+   border-radius: 15px;
+      
+  }
+ 
+  .container {
+    width:100%;
+      
+    }
+    .ForName,.ForProfilePhoto,.ForUserId,.ForGender,.ForMailId{ 
+    width: 258px;
+    height:50%;
+    }
+    .ForName {
+    
+        display:inline-block;
+        background-color: yellow;
+        border-radius: 5px;
+        height: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .ForProfilePhoto {
+    margin-left: 30px;
+       
+    }
+    .ForUserId {
+        display:inline-block;
+background-color: yellow;
+border-radius: 5px;
+height: 40px;
+margin-left: 20px;
+margin-right: 20px;
+    }
+    .ForGender {
+        display:inline-block;
+        background-color: yellow;
+        border-radius: 5px;
+        height: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .ForMailId {
+      display:inline-block;
+background-color: yellow;
+border-radius: 5px;
+height: 40px;
+margin-left: 20px;
+margin-right: 20px;
+
+    }
+    .imgSrc{
+        width: 50px;
+        height: 40px;
+    }
+    .mailContent{
+        display: flex;
+        align-items: center;
+    justify-content: center;
+margin-top: 10px;
+    }

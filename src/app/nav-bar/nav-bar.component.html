@@ -3,23 +3,25 @@
       <div id="navigation-bar">
         <ul>
           <li routerLink="/newTweet" [ngClass]="isNewTweet ? 'navBg' : ''">
-            <a><span>New tweet</span></a>
+            <a><span>New tweet <i class="bi bi-file-earmark-plus-fill"></i></span></a>
           </li>
           <li routerLink="/myTweets" [ngClass]="isMyTweets ? 'navBg' : ''">
-            <a><span>My Tweets</span></a>
+            <a><span>My Tweets <i class="bi bi-person-lines-fill"></i></span></a>
           </li>
           <li routerLink="/allTweets" [ngClass]="isAllTweets ? 'navBg' : ''">
-            <a><span>All Tweets</span></a>
+            <a><span>All Tweets <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+            </svg></span></a>
           </li>
           <li routerLink="/allUsers" [ngClass]="isAllUsers ? 'navBg' : ''">
-            <a><span>All Users</span></a>
+            <a><span>All Users  <i class="bi bi-people-fill"></i></span></a>
           </li>
           <li routerLink="/editAccount" [ngClass]="iseditAccount ? 'navBg' : ''">
-            <a><span>Edit account</span></a>
+            <a><span>Edit account   <i class="bi bi-pencil-fill"></i></span></a>
           </li>
   
           <li class="logoutBtn">
-            <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+            <button type="button" class="btn btn-danger" (click)="logout()">Logout<i class="bi bi-box-arrow-in-right"></i></button>
           </li>
         </ul>
       </div>

@@ -43,6 +43,8 @@ public ProfilePictureBase64:any
                   ProfilePictureBase64: new FormControl(this.sellersPermitString),
                   UserId: new FormControl(localStorage.getItem("UserId")),
                   UserName: new FormControl(localStorage.getItem("UserName")),
+                  UserBio: new FormControl(localStorage.getItem("UserBio")),
+
                }); 
   }
   
