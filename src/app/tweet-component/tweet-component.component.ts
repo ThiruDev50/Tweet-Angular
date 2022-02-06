@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,6 +14,9 @@ import { ApiConnectionsService } from '../utils/api-connections.service';
 export class TweetComponentComponent implements OnInit {
   @Input() tweet: any;
   viewCommentsToggle:boolean=false
+  isClicked: boolean = false;
+  likeBtnColor: any = 'black';
+  totalLikes:any=0
   imagePath: any;
   commentorimagePath: any;
   formEditPost: any;
@@ -33,10 +37,15 @@ export class TweetComponentComponent implements OnInit {
   userPhotoBase64:any
   userImage:any;
   NewOrView:any
+  tweetLikersUserId:any
+  likesForm:any;
+  currentUserId:any
+  currentUserName:any
   constructor(
     private _sanitizer: DomSanitizer,
     private apiConnection: ApiConnectionsService,
-    private router: Router
+    private router: Router,
+    private http :HttpClient
   ) {
     this.userPhotoBase64=localStorage.getItem('ProfilePictureBase64')
     this.userImage=this.commentorimagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
@@ -49,7 +58,7 @@ export class TweetComponentComponent implements OnInit {
     if (this.tweet.UserId == localStorage.getItem('UserId')) {
       this.isSameUser = true;
     }
-
+this.currentUserName=localStorage.getItem('UserName')
     this.commentorimagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
       'data:image/jpg;base64,' + this.tweet.CommentorProfilePictureBase64
     );
@@ -61,8 +70,20 @@ export class TweetComponentComponent implements OnInit {
     this.tweetCreatedDMY = this.tweet.TweetCreatedDMY;
     this.tweetContent = this.tweet.TweetContent;
     this.commentorUserName = this.tweet.CommentorUserName;
+    this.tweetLikersUserId=this.tweet.TweetLikersUserId
+    if(this.tweetLikersUserId){
+      this.totalLikes=this.tweet.TweetLikersUserId.length
+      this.totalLikes-=2
+    }
+console.log(2,this.tweetLikersUserId,this.tweet.UserId)
+
+this.currentUserId=localStorage.getItem('UserId')
+    if(this.tweetLikersUserId.includes(this.currentUserId.toString())){
+          this.likeBtnColor="warn"
+          this.isClicked=!this.isClicked
+    }
     if (this.tweet.CommentorUserId == localStorage.getItem('UserId')) {
-      this.isSameCommentUser = true;
+      this.isSameCommentUser = true; 
     }
     //console.log(this.tweet.CommentorUserId, localStorage.getItem('UserId'));
 
@@ -90,6 +111,8 @@ export class TweetComponentComponent implements OnInit {
         tweetCreatedDMY: new FormControl(this.tweet.TweetCreatedDMY),
       });
     }
+   
+
   }
   addComment(commentData: any) {
     this.apiConnection.AddComment(this.formNewComment.value).subscribe(
@@ -189,6 +212,27 @@ export class TweetComponentComponent implements OnInit {
   viewComments(){
     this.viewCommentsToggle=!this.viewCommentsToggle
     
+  }
+  likeButtonClicked() {
+    if (!this.isClicked) {
+      this.likeBtnColor = 'warn';
+     
+    }
+    else{
+      this.likeBtnColor = 'black';
+  
+
+    }
+    this.isClicked = !this.isClicked;
+    this.likesForm = new FormGroup({
+      tweetId: new FormControl(this.tweet.TweetId),
+      userId: new FormControl(this.currentUserId),
+    });
+
+this.http.put("https://localhost:44333/api/Tweet/Likes",this.likesForm.value).subscribe(data=>{
+  this.totalLikes=data
+  this.totalLikes-=2
+})
   }
   del: any;
   /* deleteMyPost() {

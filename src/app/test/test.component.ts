@@ -23,13 +23,21 @@ import { Router } from '@angular/router';
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
-
 export class TestComponent implements OnInit {
-  isLoading:boolean=false
-constructor(){
-  this.isLoading=true
-}
-  ngOnInit(): void {
-    
+  isLoading: boolean = false;
+  isClicked: boolean = false;
+  likeBtnColor: any = 'black';
+  constructor() {
+    this.isLoading = true;
+  }
+  ngOnInit(): void {}
+  likeButtonClicked() {
+    if (!this.isClicked) {
+      this.likeBtnColor = 'warn';
+    }
+    else{
+      this.likeBtnColor = 'black';
+    }
+    this.isClicked = !this.isClicked;
   }
 }
