@@ -32,9 +32,6 @@ public ProfilePictureBase64:any
   }
   ngOnInit(): void {
     //this.ProfilePictureBase64=localStorage.getItem("ProfilePictureBase64")
-    
-    
-
                  this.formdata = new FormGroup({ 
                   MailId: new FormControl(localStorage.getItem("MailId")),
                   ContactNumber: new FormControl(localStorage.getItem("ContactNumber")),

@@ -20,8 +20,8 @@ import { CommonService } from '../utils/common.service';
   styleUrls: ['./login-register.component.css'],
 })
 export class LoginRegisterComponent implements OnInit {
-  isLoading:boolean=true
-  isNotLoading:boolean=false
+  isLoading:boolean
+
   ok:any
   token:any=""
   formGroupReg!: FormGroup;
@@ -52,21 +52,25 @@ export class LoginRegisterComponent implements OnInit {
     private commonService: CommonService,
     private router: Router,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.isLoading=false
+    
+  }
 
   ngOnInit(): void {
     const signUpButton = document.getElementById('signUp') as HTMLElement;
     const signInButton = document.getElementById('signIn') as HTMLElement;
     const container = document.getElementById('container') as HTMLElement;
-
+    
     signUpButton.addEventListener('click', () => {
       container.classList.add('right-panel-active');
     });
-
+  
+   
     signInButton.addEventListener('click', () => {
       container.classList.remove('right-panel-active');
     });
-
+  
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -87,8 +91,10 @@ export class LoginRegisterComponent implements OnInit {
     }
     this.formValue.mailId = this.form.value.email;
     this.formValue.password = this.form.value.password;
+    this.isLoading=true
     this.apiConnection.LoginPost(this.formValue).subscribe(
       (data) => {
+    this.isLoading=false
         if (data == 'UnAuthorized') {
           swal('Oops! Wrong credentials', 'Try again', 'warning');
         } else {
@@ -114,10 +120,17 @@ export class LoginRegisterComponent implements OnInit {
 
         //  console.log('kkkk', localStorage.getItem('MailId'));
           //For Token
+    this.isLoading=true
+       
         this.apiConnection.ForToken(this.formValue).subscribe(
           data=>{
+    this.isLoading=false
+       
             this.token=data
           },error=>{
+            this.isLoading=false
+  
+
             swal(
               'Failed to connect with DB',
               'Probably API is not running',
@@ -130,6 +143,8 @@ export class LoginRegisterComponent implements OnInit {
         }
       },
       (error) => {
+    this.isLoading=false
+     
         swal(
           'Failed to connect with DB',
           'Probably API is not running',

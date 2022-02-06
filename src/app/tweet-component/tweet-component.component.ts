@@ -12,6 +12,7 @@ import { ApiConnectionsService } from '../utils/api-connections.service';
 })
 export class TweetComponentComponent implements OnInit {
   @Input() tweet: any;
+  viewCommentsToggle:boolean=false
   imagePath: any;
   commentorimagePath: any;
   formEditPost: any;
@@ -29,11 +30,19 @@ export class TweetComponentComponent implements OnInit {
   isSameCommentUser: boolean = false;
   showComment: boolean = false;
   PostDelete: any;
+  userPhotoBase64:any
+  userImage:any;
+  NewOrView:any
   constructor(
     private _sanitizer: DomSanitizer,
     private apiConnection: ApiConnectionsService,
     private router: Router
-  ) {}
+  ) {
+    this.userPhotoBase64=localStorage.getItem('ProfilePictureBase64')
+    this.userImage=this.commentorimagePath = this._sanitizer.bypassSecurityTrustResourceUrl(
+      'data:image/jpg;base64,' + this.userPhotoBase64
+    );
+  }
 
   ngOnInit(): void {
     //console.log(1,this.tweet)
@@ -59,9 +68,11 @@ export class TweetComponentComponent implements OnInit {
 
     if (this.tweet.CommentorContent != '') {
       this.showComment = true;
+      this,this.NewOrView="View Comment"
       this.commentorContent = this.tweet.CommentorContent;
     } else {
       this.showComment = false;
+      this,this.NewOrView="Add Comment"
 
       this.formNewComment = new FormGroup({
         tweetId: new FormControl(this.tweet.TweetId),
@@ -174,6 +185,10 @@ export class TweetComponentComponent implements OnInit {
   }
   CancelEditMyComment() {
     this.isMyCommentEdit = false;
+  }
+  viewComments(){
+    this.viewCommentsToggle=!this.viewCommentsToggle
+    
   }
   del: any;
   /* deleteMyPost() {

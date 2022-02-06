@@ -1,5 +1,9 @@
 <app-nav-bar></app-nav-bar>
-<div class="outer">
+
+<div *ngIf="isLoading" >
+  <app-loading-screen></app-loading-screen>
+</div>
+<div class="outer" *ngIf="!isLoading">
     &zwnj; 
     <div *ngFor="let user of allUsers"  >
         <app-users-list [user]="user"></app-users-list>
