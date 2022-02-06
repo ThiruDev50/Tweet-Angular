@@ -11,6 +11,8 @@ import swal from 'sweetalert';
 export class MyTweetsComponent implements OnInit {
 formdata:any;
 myTweets:any;
+isLoading:boolean=true;
+isNoTweets:boolean=false;
   constructor(private apiConnection:ApiConnectionsService) { 
 
   }
@@ -23,7 +25,10 @@ myTweets:any;
    }); 
 try{
   this.apiConnection.GetMyTweets(this.formdata.value).subscribe(data=>{
-  
+  this,this.isLoading=false
+  if(data==""){
+    this.isNoTweets=true
+  }
     this.myTweets=data
   },
       (error) => {

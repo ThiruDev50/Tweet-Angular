@@ -1,5 +1,114 @@
 .imgSrc{
     width: 550px;
-    height: 400px;
+    height: 520px;
+    margin-bottom: 150px;
   }
-  
+  .mainOuter{
+    height: 100%;
+    background-color: gold;
+  }
+  .img{
+    height: 200px;
+  }
+  .inner{
+   margin-right: 10px;
+   margin-top: 100px;
+  }
+  .outer{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  .ForUserIdDiv{
+  }
+  .ForUserNameDiv{
+  }
+  .ForUserIdInput{
+    line-height:30px;
+width: 400px;
+border-radius: 10px;
+background-color: rgb(180, 180, 180);
+
+
+  }
+  .ForUserNameInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+
+  }
+  .ForMailIdInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+background-color: rgb(180, 180, 180);
+  }
+  .ForContactNumberInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+
+  }
+  .ForGenderInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+background-color: rgb(180, 180, 180);
+
+
+  }
+  .ForPasswordInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+
+  }
+  .ForUserBioInput{
+    width: 400px;
+    line-height:30px;
+border-radius: 10px;
+
+  }
+  .ForUserIdlabel{
+    width: 120px;
+height: 30px;
+  }
+  .ForUserNamelabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForMailIdlabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForContactNumberlabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForGenderlabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForPasswordlabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForUserBiolabel{
+    width: 120px;
+    height: 30px;
+
+  }
+  .ForProfilePicturelabel{
+    width: 120px;
+    
+  }

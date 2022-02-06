@@ -20,6 +20,7 @@ allTweets:any
     this.isLoading=true
     try{
       this.apiConnection.GetAllTweets().subscribe(data=>{
+        this.isLoading=false;
         this.allTweets=data
       //  console.log("allusers tweets",data)
       },error=>{
@@ -27,13 +28,13 @@ allTweets:any
           'Failed to connect with DB',
           'Probably API is not running',
           'warning'
-        );
+        )
       })
     }
     catch{
       swal('Oops Something wrong!!Pleasse try again later');
     }
-    this.isLoading=false
+    
 
     
   }

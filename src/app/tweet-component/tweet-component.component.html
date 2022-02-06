@@ -1,61 +1,127 @@
+
 <div class="outer">
-  <div >
-    <span>
-      <img class="imgSrc" [src]="imagePath" />
-      <span class="ForName">{{ UserName }}</span> &nbsp;&nbsp;&nbsp;
-      <span class="ForName">{{ tweetCreatedTime }}</span
-      >&nbsp;&nbsp;&nbsp;
-      <span class="ForName">{{ tweetCreatedDMY }}</span>
-      <span>
-        <button *ngIf="isSameUser" (click)="editMyPost()">Edit tweet</button>
+  <mat-card class="card">
+    <mat-card-content>
+      <mat-card-title>
+        <span >
+          <span>
+           @{{tweet.UserName}}
+          </span>
+          <span style="float: right;">
+          <span>
+          {{tweetCreatedTime}}  &zwnj;&zwnj;&zwnj;&zwnj; {{tweet.TweetCreatedDMY}}
+          </span>
+          <span>
+            &zwnj;&zwnj;
+            <button *ngIf="isSameUser" class="btn btn-primary" (click)="editMyPost()"><i class="bi bi-pencil-fill"></i></button>
+          </span>
+        </span>
       </span>
+      </mat-card-title>
+      <br>
+      <div>
+        <div style="display: inline-block;">
+          <span class="ForProfilePhoto"> <img class="imgSrc" [src]="imagePath" />  </span>
+        </div>
+        <div style="display: inline-block;">
+          <div class="TweetContent" *ngIf="!isMyPostEdit">
+            {{ tweetContent }}
+          </div>
+          <div class="TweetContent" *ngIf="isMyPostEdit">
+            <form
+            [formGroup]="formEditPost"
+            (ngSubmit)="editPost(formEditPost.value)"
+          >
+            <input type="text" formControlName="tweetContent"  style="width: 1000px;"/>
+           &zwnj;
+            <button type="submit" value="Submit" class="btn btn-success" style="width: 80px;">Save </button>
+            &zwnj;
+            <button (click)="CancelEditMyPost()" class="btn btn-danger" style="width:80px">Cancel</button>
+          </form>
+          </div>
+          <br>
+          <div class="ViewComments">
+            <button (click)="viewComments()" *ngIf="!viewCommentsToggle" class="btn btn-info">{{NewOrView}} &zwnj;<i class="bi bi-caret-down-fill"></i></button>
+            <button (click)="viewComments()"*ngIf="viewCommentsToggle" class="btn btn-info">Close Comments &zwnj;<i class="bi bi-caret-up-fill"></i></button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="viewCommentsToggle">
+        
+      <div class="showingComment" *ngIf="showComment">
+
+        <mat-card class="commentCard">
+          <mat-card-title>
+            <span>
+              <span>
+           @{{commentorUserName}}
+              </span>
+              <span style="float: right;">
+                <button *ngIf="isSameCommentUser" class="btn btn-primary" (click)="editMyComment()"><i class="bi bi-pencil-fill"></i></button>
+              </span>
+            </span>
+          </mat-card-title>
+          <mat-card-content>
+            <div>
+              <div style="display: inline-block;">
+                <img class="imgSrc" [src]="commentorimagePath" />
+
+              </div>
+              <div style="display: inline-block;">
+                <span class="comments" *ngIf="!isMyCommentEdit">{{ commentorContent }}</span>
+                <div class="comments" *ngIf="isMyCommentEdit">
+                  <form
+                  [formGroup]="formEditComment"
+                  (ngSubmit)="editComment(formEditComment.value)"
+                >
+                  <input type="text" formControlName="commentorContent" style="width: 800px;" />
+           &zwnj;
+
+                  <button type="submit" value="Submit" class="btn btn-success" style="width: 80px;">Save</button>
+           &zwnj;
+
+                  <button (click)="CancelEditMyComment()" class="btn btn-danger" style="width:80px">Cancel</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div *ngIf="!showComment">
+
+
+<mat-card style="margin-left: 50px;">
+  <mat-card-title>
+    <span>
       <span>
-        <!-- <button *ngIf="isSameUser" (click)="deleteMyPost()">Delete tweet</button> -->
+        @{{tweet.UserName}}
       </span>
     </span>
-    <div class="TweetContent" *ngIf="!isMyPostEdit">
-      {{ tweetContent }}
-    </div>
-  </div>
-  <div class="TweetContent" *ngIf="isMyPostEdit">
-    <form
-    [formGroup]="formEditPost"
-    (ngSubmit)="editPost(formEditPost.value)"
-  >
-    <input type="text" formControlName="tweetContent" />
-    <button type="submit" value="Submit">Comment</button>
-    <button (click)="CancelEditMyPost()">Cancel</button>
-  </form>
-  </div>
-
-  <div class="showingComment" *ngIf="showComment">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
-      <img class="imgSrc" [src]="commentorimagePath" />
-      <span> Commented by:{{ commentorUserName }}</span
-      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="comments" *ngIf="!isMyCommentEdit">Comments : {{ commentorContent }}</span>
-      <div class="comments" *ngIf="isMyCommentEdit">
+  </mat-card-title>
+  <mat-card-content>
+    <div>
+      <div style="display: inline-block;">
+        <img class="imgSrc" [src]="userImage" />
+      </div>
+      <div style="display: inline-block;">
         <form
-        [formGroup]="formEditComment"
-        (ngSubmit)="editComment(formEditComment.value)"
+        [formGroup]="formNewComment"
+        (ngSubmit)="addComment(formNewComment.value)"
       >
-        <input type="text" formControlName="commentorContent" />
-        <button type="submit" value="Submit">Save</button>
-        <button (click)="CancelEditMyComment()">Cancel</button>
+        <input type="text" formControlName="commentorContent" style="width: 800px; height: 40px;"/>
+        &zwnj;
+        <button type="submit" value="Submit" class="btn btn-success">Comment</button>
       </form>
       </div>
-      <span>
-        <button *ngIf="isSameCommentUser" (click)="editMyComment()">Edit Comment</button>
-      </span>
-    </span>
-  </div>
-  <div *ngIf="!showComment">
-    <form
-      [formGroup]="formNewComment"
-      (ngSubmit)="addComment(formNewComment.value)"
-    >
-      <input type="text" formControlName="commentorContent" />
-      <button type="submit" value="Submit">Comment</button>
-    </form>
-  </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+      </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+&zwnj;
+&zwnj;
+
 </div>

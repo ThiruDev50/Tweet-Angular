@@ -1,9 +1,14 @@
 <app-nav-bar></app-nav-bar>
-<div *ngIf="isLoading">
-<app-loading-screen></app-loading-screen>
+&zwnj;
+&zwnj;
+
+<div *ngIf="isLoading" >
+  <app-loading-screen></app-loading-screen>
 </div>
 <div *ngIf="!isLoading">
-<div *ngFor="let tweet of allTweets"  >
-    <app-tweet-component [tweet]="tweet"></app-tweet-component>
-</div>
+  <div class="row">
+    <div class="col-md-12" *ngFor="let tweet of allTweets">
+      <app-tweet-component [tweet]="tweet"></app-tweet-component>
+    </div>
+  </div>
 </div>

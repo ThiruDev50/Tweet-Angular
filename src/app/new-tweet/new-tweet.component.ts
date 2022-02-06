@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import swal from 'sweetalert';
 import { ApiConnectionsService } from '../utils/api-connections.service';
 
@@ -18,6 +19,7 @@ export class NewTweetComponent implements OnInit {
   tweetCreatedPeriodString=this.cHour+":"+this.cMin
   tweetCreatedDMY=this.cDay+"/"+this.cMonth+"/"+this.cYear
   formdata: any;
+  userName= localStorage.getItem('UserName');
   tweetBody = {
     UserName: localStorage.getItem('UserName'),
     UserId: localStorage.getItem('UserId'),
@@ -28,9 +30,15 @@ export class NewTweetComponent implements OnInit {
     CommentorContent: '',
     CommentorProfilePictureBase64: '',
   };
-  constructor(private apiConnection: ApiConnectionsService) {}
+  imagePath:any;
+  constructor(private apiConnection: ApiConnectionsService,private _sanitizer: DomSanitizer) {
+    this.tweetCreatedPeriodString=this.cHour+":"+this.cMin
+    this.tweetCreatedDMY=this.cDay+"/"+this.cMonth+"/"+this.cYear
+  }
 
   ngOnInit(): void {
+    this.imagePath=this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+    + localStorage.getItem("ProfilePictureBase64"));
     this.formdata = new FormGroup({
       TweetContent: new FormControl(''),
       ProfilePictureBase64: new FormControl(

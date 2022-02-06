@@ -9,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllUsersComponent implements OnInit {
 isLoading:boolean=true
-isNotLoading:boolean=false
+
 allUsers:any
   constructor(private http: HttpClient){
     this.http.get('https://localhost:44333/api/Register/GetAllUsers').subscribe(data=>{
+      this.isLoading=false
       this.allUsers=data
       console.log(this.allUsers)
     })

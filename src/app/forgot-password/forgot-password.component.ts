@@ -11,6 +11,7 @@ import { ApiConnectionsService } from '../utils/api-connections.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   formdata:any;
+  isLoading:boolean=false;
 isUpdate:boolean=false
 UpdateFormdata:any;
 currentMailId:any;
@@ -28,7 +29,10 @@ currentMailId:any;
   }
   checkDetails(dataBody:any){
     try{
+  this.isLoading=true
+
 this.apiConnection.CheckValidUser(this.formdata.value).subscribe(data=>{
+  this.isLoading=false
   if(data=="UnAuthorized"){
      swal('Oops! Wrong credentials', 'Try again', 'warning');
   }
@@ -37,11 +41,20 @@ this.apiConnection.CheckValidUser(this.formdata.value).subscribe(data=>{
     this.isUpdate=true
   }
 
+},error=>{
+  this.isLoading=false
+  swal(
+    'Failed to connect with DB',
+    'Probably API is not running',
+    'warning'
+  );
 })
     }
     catch{
       swal('Oops! Something went wrong', 'Try again', 'warning');
     }
+  
+
   }
   UpdatePassword(dataBody:any){
     
@@ -50,9 +63,11 @@ this.apiConnection.CheckValidUser(this.formdata.value).subscribe(data=>{
      }
      else{
        try{
+        this.isLoading=true
         this.apiConnection.UpdatePassword(this.UpdateFormdata.value).subscribe(data=>{
         //  console.log(this.UpdateFormdata.MailId)
         //  console.log(this.currentMailId)
+        this.isLoading=false
         if(data=="Updated successfully"){
           swal(
             'Password updated successful',
@@ -63,6 +78,13 @@ this.apiConnection.CheckValidUser(this.formdata.value).subscribe(data=>{
             this.router.navigate(['Login']);
           }, 3500);
         }
+        },error=>{
+          this.isLoading=false
+          swal(
+            'Failed to connect with DB',
+            'Probably API is not running',
+            'warning'
+          );
         })
        }
        catch{

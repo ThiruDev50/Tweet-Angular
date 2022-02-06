@@ -1,22 +1,45 @@
 .outer{
     width: 950px;
-    height: 250px;
     border-left: 10%;
     border-right: 10%;
     border-radius: 20px;
-
+position: relative;
+display: block;
+flex-wrap: wrap;
 }
 .imgSrc{
     width: 100px;
     height: 100px;
   }
-  .TweetContent{
-    margin-left: 300px;
+  .commentCard{
+    margin-left: 50px;
   }
-  .showingComment{
-
+  .TweetContent{
+    float: left;
+    width: 1200px;
+   height: 50px;
+    font-size: 30px;
+    margin-left: 10px;
+  }
+  
+  .ViewComments{
+    float: right;
   }
   .comments{
-    margin-left: 400px;
+    float: left;
+    width: 1000px;
+   height: 50px;
+    font-size: 30px;
+    margin-left: 10px;
 
+  }
+  .card{
+    width: 1350px;
+    margin-left: 7%;
+    height: auto;
+    flex-wrap: wrap;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
   }

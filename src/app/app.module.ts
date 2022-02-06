@@ -29,6 +29,8 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NgMaterialModule } from './ng-material/ng-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersListComponent } from './users-list/users-list.component';
+import { NewTweetPageComponent } from './new-tweet-page/new-tweet-page.component';
+import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-password-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { UsersListComponent } from './users-list/users-list.component';
     LoadingScreenComponent,
     DemoComponent,
     TweetComponentComponent,
-    UsersListComponent
+    UsersListComponent,
+    NewTweetPageComponent,
+    ForgotPasswordPageComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     MatGridListModule,
     BrowserAnimationsModule,
     NgMaterialModule,
+    
     
   ],
     exports:[NgxSpinnerModule],

@@ -10,6 +10,7 @@ export class UsersListComponent implements OnInit {
   @Input() user: any;
   imagePath:any;
   isClicked:boolean=false
+  UserBio:any
   constructor(private _sanitizer: DomSanitizer,private _common: CommonService) {
     
    }
@@ -23,8 +24,15 @@ export class UsersListComponent implements OnInit {
     this.imagePath=this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
     + this._common.maleDefaultProfileBase64);
    }
+   if(!this.user.UserBio){
+     this.UserBio="No Bio"
+   }
+   else{
+    this.UserBio=this.user.UserBio
+   }
   }
   doStuff(){
     this.isClicked=!this.isClicked
   }
+  
 }

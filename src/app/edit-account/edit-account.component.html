@@ -1,57 +1,64 @@
 <app-nav-bar></app-nav-bar>
-
-  <form [formGroup]="formdata" (ngSubmit)="editDetails(formdata.value)">
-    <div>
+<div class="mainOuter">
+<div class="outer">
+  
+  <form [formGroup]="formdata" (ngSubmit)="editDetails(formdata.value)" style="height: 600px;">
+    <div class="inner" style="display: inline-block;">
+    <div class=" ForUserIdDiv">
+      <span >
+        <label class="ForUserIdlabel">User Id</label>&nbsp;&nbsp;
+        <input type="text" formControlName="UserId" class="ForUserIdInput" />
+      </span>
+    </div>
+    <div class=" ForUserNameDiv">
       <span>
-        <label>User Id</label>&nbsp;&nbsp;
-        <input type="text" formControlName="UserId" />
+        <label class="ForUserNamelabel">User name</label>&nbsp;&nbsp; 
+        <input type="text" formControlName="UserName" class="ForUserNameInput" />
+      </span>
+    </div>
+    <div class="">
+      <span>
+        <label class="ForMailIdlabel">Mail Id</label>&nbsp;&nbsp;
+        <input type="text" formControlName="MailId" class="ForMailIdInput"  />
+      </span>
+    </div>
+    <div class="">
+      <span>
+        <label class="ForContactNumberlabel"> Contact Number</label>&nbsp;&nbsp;
+        <input type="text" formControlName="ContactNumber" class="ForContactNumberInput" />
+      </span>
+    </div>
+    <div class="">
+      <span>
+        <label class="ForGenderlabel">Gender</label>&nbsp;&nbsp;
+        <input type="text" formControlName="Gender" class="ForGenderInput" />
+      </span>
+    </div>
+    <div class="">
+      <span>
+        <label class="ForPasswordlabel">Password</label>&nbsp;&nbsp;
+        <input type="password" formControlName="Password" class="ForPasswordInput" />
       </span>
     </div>
     <div>
       <span>
-        <label>User name</label>&nbsp;&nbsp;
-        <input type="text" formControlName="UserName" />
+        <label class="ForUserBiolabel">User Bio</label>&nbsp;&nbsp;
+        <input type="text" formControlName="UserBio" class="ForUserBioInput input-lg" />
       </span>
     </div>
     <div>
       <span>
-        <label>Mail Id</label>&nbsp;&nbsp;
-        <input type="text" formControlName="MailId" />
-      </span>
-    </div>
-    <div>
-      <span>
-        <label>Contact Number</label>&nbsp;&nbsp;
-        <input type="text" formControlName="ContactNumber" />
-      </span>
-    </div>
-    <div>
-      <span>
-        <label>Gender</label>&nbsp;&nbsp;
-        <input type="text" formControlName="Gender" />
-      </span>
-    </div>
-    <div>
-      <span>
-        <label>Password</label>&nbsp;&nbsp;
-        <input type="password" formControlName="Password" />
-      </span>
-    </div>
-    <div>
-      <span>
-        <label>User Bio</label>&nbsp;&nbsp;
-        <input type="text" formControlName="UserBio" />
-      </span>
-    </div>
-    <div>
-      <span>
-        <label>Profile Picture</label>&nbsp;&nbsp;
+        <label class="ForProfilePicturelabel">Profile Picture</label>&nbsp;&nbsp;
 
         <input (change)="picked($event, 1)" type="file" />
       </span>
     </div>
-    <div class="img">
+    
+    <button type="submit" mat-raised-button color="primary" value="Submit" style="float: right;">Save Edit </button>
+    </div>
+    <div class="img" style="display: inline">
       <img class="imgSrc" [src]="imagePath" />
     </div>
-    <button type="submit" value="Submit">Okkk</button>
   </form>
+</div>
+</div>
