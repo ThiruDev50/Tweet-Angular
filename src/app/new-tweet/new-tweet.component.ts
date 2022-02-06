@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import swal from 'sweetalert';
 import { ApiConnectionsService } from '../utils/api-connections.service';
 
@@ -31,7 +32,7 @@ export class NewTweetComponent implements OnInit {
     CommentorProfilePictureBase64: '',
   };
   imagePath:any;
-  constructor(private apiConnection: ApiConnectionsService,private _sanitizer: DomSanitizer) {
+  constructor(private apiConnection: ApiConnectionsService,private _sanitizer: DomSanitizer,private router:Router) {
     this.tweetCreatedPeriodString=this.cHour+":"+this.cMin
     this.tweetCreatedDMY=this.cDay+"/"+this.cMonth+"/"+this.cYear
   }
@@ -64,8 +65,8 @@ export class NewTweetComponent implements OnInit {
         'success'
       );
       setTimeout(() => {
-        window.location.reload();
-      }, 3500);
+        this.router.navigate(['myTweets']);
+      }, 2500);
     },error=>{
       swal(
         'Failed to connect with DB',

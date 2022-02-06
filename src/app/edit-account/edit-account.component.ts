@@ -90,6 +90,12 @@ public ProfilePictureBase64:any
  // console.log(this.formdata)
       this.apiConnection.EditDetailsPut(this.formdata.value).subscribe(
         (data) => {
+          localStorage.setItem("ProfilePictureBase64",this.sellersPermitString)
+          localStorage.setItem("UserBio",this.formdata.value.UserBio)
+          localStorage.setItem("Password",this.formdata.value.Password)
+          localStorage.setItem("ContactNumber",this.formdata.value.ContactNumber)
+          localStorage.setItem("UserName",this.formdata.value.UserName)
+
           swal(
             'edited successful',
             'Redirecting in few seconds',

@@ -41,6 +41,10 @@
           </div>
           <br>
           <div class="ViewComments">
+            <button mat-icon-button color={{likeBtnColor}} (click)="likeButtonClicked()">
+              <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+            </button>&nbsp;&nbsp;&nbsp;
+            <span>Likes : {{totalLikes}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <button (click)="viewComments()" *ngIf="!viewCommentsToggle" class="btn btn-info">{{NewOrView}} &zwnj;<i class="bi bi-caret-down-fill"></i></button>
             <button (click)="viewComments()"*ngIf="viewCommentsToggle" class="btn btn-info">Close Comments &zwnj;<i class="bi bi-caret-up-fill"></i></button>
           </div>
@@ -95,7 +99,7 @@
   <mat-card-title>
     <span>
       <span>
-        @{{tweet.UserName}}
+        @{{currentUserName}}
       </span>
     </span>
   </mat-card-title>
