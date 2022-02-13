@@ -25,7 +25,7 @@ isNoTweets:boolean=false;
    }); 
 try{
   this.apiConnection.GetMyTweets(this.formdata.value).subscribe(data=>{
-  this,this.isLoading=false
+  this.isLoading=false
   if(data==""){
     this.isNoTweets=true
   }

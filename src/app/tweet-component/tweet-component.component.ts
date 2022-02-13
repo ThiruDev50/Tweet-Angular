@@ -75,7 +75,6 @@ this.currentUserName=localStorage.getItem('UserName')
       this.totalLikes=this.tweet.TweetLikersUserId.length
       this.totalLikes-=2
     }
-console.log(2,this.tweetLikersUserId,this.tweet.UserId)
 
 this.currentUserId=localStorage.getItem('UserId')
     if(this.tweetLikersUserId.includes(this.currentUserId.toString())){

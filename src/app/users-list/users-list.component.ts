@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonService } from '../utils/common.service';
+import { CommonService } from '../utils/common.service'; 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',

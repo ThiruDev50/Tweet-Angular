@@ -1,6 +1,8 @@
 <app-nav-bar></app-nav-bar>
-&zwnj;
-&zwnj;
+
+<div class="outer">
+  &zwnj;
+  &zwnj;
 
 <div *ngIf="isLoading">
   <app-loading-screen></app-loading-screen>
@@ -16,4 +18,5 @@
   <div *ngFor="let tweet of myTweets" class="col-lg-3 col-md-4 col-sm-6">
     <app-tweet-component [tweet]="tweet"></app-tweet-component>
   </div>
+</div>
 </div>
