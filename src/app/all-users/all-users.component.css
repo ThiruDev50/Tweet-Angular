@@ -6,5 +6,7 @@
     width: 400px;
 }
 .outer{
-    background-color: gold;
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
 }

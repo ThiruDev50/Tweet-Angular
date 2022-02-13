@@ -6,7 +6,7 @@
   }
   #menu-nav {
     max-width: 2000px;
-    background-color: #84dcf1;
+    background-color: rgb(247, 247, 47);
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
@@ -25,7 +25,7 @@
     left: 0;
   }
   #navigation-bar a {
-    color: red;
+    color: indigo;
     font-size: 20px;
     text-decoration: none;
     text-align: center;
@@ -35,7 +35,7 @@
     transition: all 0.3s ease;
   }
   #navigation-bar a:hover {
-    color: #e74c3c;
+    color: black;
   }
   #navigation-bar a::before {
     content: "";
@@ -65,7 +65,7 @@
     display: flex;
   }
   .navBg{
-    background-color: rgb(250, 221, 57);
+    background-color: darkturquoise;
    border-radius: 20px;
     
   }

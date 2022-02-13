@@ -4,7 +4,7 @@
   <mat-card-title>
     
     <span >
-      <span class="  w3-card w3-light-blue "> @{{userName}}</span><span style="float: right;border-radius: 5px; " class="w3-card w3-orange ">{{tweetCreatedPeriodString}} &nbsp;&nbsp;&nbsp;&nbsp;{{tweetCreatedDMY}}</span>
+      <span style="font-family: initial;"> @{{userName}}</span><span style="float: right;border-radius: 5px; font-family: initial; " >{{tweetCreatedPeriodString}} &nbsp;&nbsp;&nbsp;&nbsp;{{tweetCreatedDMY}}</span>
     </span>
   </mat-card-title>
   <mat-card-content>
@@ -13,9 +13,15 @@
     </div>
     <div style="display: inline-block;">
       <div style="margin-top: 5px;">
+        
         <div>
           <form [formGroup]="formdata" (ngSubmit)="editDetails(formdata.value)">
-        <input type="text" formControlName="TweetContent" style="width: 990px; height: 60px;" />
+        &zwnj;
+        &zwnj;
+        &zwnj;
+        &zwnj;
+
+        <input type="text" formControlName="TweetContent" style="width: 990px; height: 60px; font-family: cursive;" />
         <br>
         <button type="submit" mat-raised-button color="primary" class="Btn" value="Submit">Post Tweet</button>
         
