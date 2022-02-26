@@ -140,6 +140,8 @@ export class LoginRegisterComponent implements OnInit {
         )
         localStorage.setItem("token",this.token)
         this.router.navigate(['newTweet']);
+        this.router.navigate(['newTweet']);
+
         }
       },
       (error) => {
