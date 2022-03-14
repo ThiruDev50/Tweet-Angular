@@ -228,7 +228,7 @@ this.currentUserId=localStorage.getItem('UserId')
       userId: new FormControl(this.currentUserId),
     });
 
-this.http.put("https://localhost:44333/api/Tweet/Likes",this.likesForm.value).subscribe(data=>{
+this.http.put("https://tweetsapithiru.azurewebsites.net/api/Tweet/Likes",this.likesForm.value).subscribe(data=>{
   this.totalLikes=data
   this.totalLikes-=2
 })

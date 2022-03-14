@@ -32,7 +32,7 @@
             [formGroup]="formEditPost"
             (ngSubmit)="editPost(formEditPost.value)"
           >
-            <input type="text" formControlName="tweetContent"  style="width: 1000px; font-family: cursive;"/>
+            <input type="text" formControlName="tweetContent"  style="width: 1000px; font-family: cursive;" maxlength=400/>
            &zwnj;
             <button type="submit" value="Submit" class="btn btn-success" style="width: 80px;">Save </button>
             &zwnj;
@@ -79,7 +79,7 @@
                   [formGroup]="formEditComment"
                   (ngSubmit)="editComment(formEditComment.value)"
                 >
-                  <input type="text" formControlName="commentorContent" style="width: 800px; font-family: cursive;" />
+                  <input type="text" formControlName="commentorContent" style="width: 800px; font-family: cursive;" maxlength=200/>
            &zwnj;
 
                   <button type="submit" value="Submit" class="btn btn-success" style="width: 80px;">Save</button>
@@ -117,7 +117,7 @@
         &zwnj;
         &zwnj;
         &zwnj;
-        <input type="text" formControlName="commentorContent" style="width: 800px; height: 40px; font-family: cursive;"/>
+        <input type="text" formControlName="commentorContent" style="width: 800px; height: 40px; font-family: cursive;" maxlength=200/>
         &zwnj;
         <button type="submit" value="Submit" class="btn btn-success">Comment</button>
       </form>

@@ -14,6 +14,7 @@ export class NavBarComponent implements OnInit {
   public iseditAccount = false;
 
   constructor(private router: Router) {
+
     if (window.location.pathname == '/newTweet') {
       this.isNewTweet = true;
       this.isMyTweets = false;
@@ -46,6 +47,7 @@ export class NavBarComponent implements OnInit {
       this.isAllUsers = false;
       this.iseditAccount = true;
     }
+    console.log("pathy",window.location.pathname)
   }
 
   ngOnInit(): void {}
@@ -54,5 +56,17 @@ export class NavBarComponent implements OnInit {
    // console.log('logout clicked');
     localStorage.clear()
     this.router.navigate(['Login']);
+  }
+ 
+  newTweetClicked(){
+    console.log("clicked")
+    this.isNewTweet = true;
+      this.isMyTweets = false;
+      this.isAllTweets = false;
+      this.isAllUsers = false;
+      this.iseditAccount = false;
+      console.log("newtweet",this.isNewTweet)
+      console.log("isMyTweets",this.isMyTweets)
+
   }
 }

@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiConnectionsService implements OnInit {
   constructor(private http: HttpClient) {}
-  public baseUrl = 'https://localhost:44333/api';
+  //public baseUrl = 'https://localhost:44333/api';
+  public baseUrl='https://tweetsapithiru.azurewebsites.net/api';
 
   public loginUrl = '/Login';
   public testUrl = 'https://jsonplaceholder.typicode.com/todos/';

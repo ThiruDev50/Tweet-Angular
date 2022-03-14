@@ -12,7 +12,7 @@ isLoading:boolean=true
 
 allUsers:any
   constructor(private http: HttpClient){
-    this.http.get('https://localhost:44333/api/Register/GetAllUsers').subscribe(data=>{
+    this.http.get('https://tweetsapithiru.azurewebsites.net/api/Register/GetAllUsers').subscribe(data=>{
       this.isLoading=false
       this.allUsers=data
       console.log(this.allUsers)

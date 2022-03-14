@@ -84,6 +84,10 @@ export class LoginRegisterComponent implements OnInit {
     });
     this.initRegister();
   } //onInit finish
+  loginOnClick(){
+    this.loginProcess();
+    this.loginProcess();
+  }
   loginProcess(): void {
     this.submitted = true;
     if (this.form.invalid) {

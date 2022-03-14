@@ -58,6 +58,14 @@ export class NewTweetComponent implements OnInit {
   }
   editDetails(dataBody: any) {
     //this.formdata.patchValue({"ProfilePictureBase64":"probil;e bahi"})
+    if(this.formdata.value.TweetContent==""){
+      swal(
+        'Tweet should not be empty',
+        'Please enter a valid tweet',
+        'warning'
+      )
+    }
+    else{
     this.apiConnection.NewTweetPost(this.formdata.value).subscribe((data) => {
       swal(
         'New Tweet added ',
@@ -75,4 +83,5 @@ export class NewTweetComponent implements OnInit {
       );
     });
   }
+}
 }
