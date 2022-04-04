@@ -15,7 +15,9 @@ export class ForgotPasswordComponent implements OnInit {
 isUpdate:boolean=false
 UpdateFormdata:any;
 currentMailId:any;
-  constructor(private apiConnection:ApiConnectionsService,private router: Router,) { }
+  constructor(private apiConnection:ApiConnectionsService,private router: Router,) {
+    //hello this is testing
+   }
 
   ngOnInit(): void {
     this.formdata = new FormGroup({ 
